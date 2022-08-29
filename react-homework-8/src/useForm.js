@@ -6,7 +6,6 @@ const useForm = () => {
     const [formErors,setFormErors] = useState({});
     const [formValid, isFormValid] = useState(false);
     const [saveUser,setSaveUsers] = useState([])
-    const [isSubmit,setSubmit] = useState(false);
   
     const onInputChange = (e) => {
       const {name,value} = e.target;
@@ -15,20 +14,16 @@ const useForm = () => {
   
     const handleSubmit = (e) => {
       e.preventDefault();
-      if(isSubmit){
-        console.log("shemovida", formValid)
         const randomId = new Date().valueOf()
         setSaveUsers(prevUsers => {
           return [...prevUsers, {...formValue, id:randomId}]
         })
-      }
+
       setFormValue(initialValues)
-      setSubmit(false)
     }
   
     useEffect(() => {
       const timer = setTimeout(() => {
-        console.log("in timer")
         setFormValue(formValue)
       }, 5000);
       return () => clearTimeout(timer);
@@ -64,7 +59,7 @@ const useForm = () => {
     },[formValue])
   
     return (
-      {formValue,formErors,formValid,saveUser,handleSubmit,onInputChange,setSubmit}
+      {formValue,formErors,formValid,saveUser,handleSubmit,onInputChange}
     );
 }
 

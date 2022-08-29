@@ -2,7 +2,7 @@ import './App.css';
 import useForm from './useForm';
 
 function App() {
-  const {formValue,formErors,formValid,saveUser,handleSubmit,onInputChange,setSubmit} = useForm()
+  const {formValue,formErors,formValid,saveUser,handleSubmit,onInputChange} = useForm()
   return (
     <div className="formValues">
   
@@ -24,7 +24,7 @@ function App() {
             <input type={"number"} name={"age"} placeholder={"Enter your Age"} value={formValue.age} onChange={onInputChange}  />
             {formErors.age && <p className='errorColor' >{formErors.age}</p>}
           </div>
-          <button onClick={() => setSubmit(true)} disabled={!formValid}>subbmit</button>
+          <button disabled={!formValid}>subbmit</button>
         </form>
 
         {saveUser.map(user => {
